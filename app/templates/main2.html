@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html>
+<div>
+<script type="text/javascript">
+window.onload = function () {
+// alert('hihi')
+var jsondata = [];
+
+var chart = new CanvasJS.Chart("chartContainer",{
+    // title: {
+    //     text: "Federal Funds Rate"
+    // },
+    // width:2000,
+    dataPointWidth: 15,
+    zoomEnabled: true,
+    axisY: {
+        includeZero: true,
+        interval: .5,
+        valueFormatString: "#0.## "
+    },
+    axisX: {
+        margin:0,
+        interval: 3,
+        intervalType: "year",
+        valueFormatString: "MMM-YY",
+        labelAngle: -45,
+        labelFontSize:20,
+        stripLines:[
+            {                
+                startValue:new Date(1995,02,01),
+                endValue:new Date(2006,01,31),
+                label: "Alan Greenspan",
+                labelPlacement:"outside",
+                labelFontColor:'#FF9933',
+                color:'#FF9933',
+                opacity:0.6                               
+            },
+            {                
+                startValue:new Date(2006,01,31),
+                endValue:new Date(2014,01,29),
+                label: "Janet Yellen",
+                labelFontColor:'#3352ff',
+                labelPlacement:"outside",
+                color:'#3352ff',
+                opacity:0.3                             
+            },
+            {                
+                startValue:new Date(2014,01,29),
+                endValue:new Date(2018,01,31),
+                label: "Ben Bernanke",
+                labelPlacement:"outside",
+                labelFontColor:'#179c17',
+                color:'#179c17',
+                opacity:0.3                              
+            },
+            {                
+                startValue:new Date(2018,01,31),
+                endValue:new Date(2020,09,16),
+                label: "Jerome Powell",
+                labelPlacement:"outside",
+                labelFontColor:'#FF0000',
+                color:'#FF0000',
+                opacity:0.3                                 
+            },
+            
+            ]  
+
+    },
+    toolTip: {
+        content: "{x} </br> min: {y[0]}, max: {y[1]}"
+    },
+    data: [
+    {
+        type: "rangeColumn",
+        // click: onClick,
+        // showInLegend: true,
+        // indexLabel: "{y[#index]}",
+        // indexLabelFontSize: 10,
+        // xvalueFormatString: "DD MMM YYYY",
+        yValueFormatString: "#0.##",
+        legendText: "Min&Max Federal Funds Rate",
+        dataPoints: jsondata
+    }
+    ]
+});
+// function onClick(e) {
+//         var yyyy = e.dataPoint.x.getFullYear();
+//         var mm = e.dataPoint.x.getMonth() + 1;
+//         var dd = e.dataPoint.x.getDate();
+//         var ans = [yyyy,(mm>9 ? '' : '0') + mm,(dd>9 ? '' : '0') + dd].join('');
+//         var forfilename = `./static/text/${ans}.txt`;
+//         var forsentencename = `./static/text/${ans}_keysentence.txt`;
+//         $(document).ready(function(){
+//             $("#target").load(forfilename);
+//         })
+//         $(document).ready(function(){
+//             $("#sentence").load(forsentencename);
+//         })
+        
+//     }
+function addData(data){
+    for (var i = 0; i < data.length; i++) {
+        jsondata.push({
+            x: new Date(data[i].Date),
+            y: data[i].RateRange
+        });
+    }
+
+    // chart.options.dataPointWidth = 10;
+    chart.render();
+    // alert(jsondata)
+}
+$.getJSON("./static/json/rateforHtml1.json", addData)
+}
+// $( "#target" ).load( "aaa.txt" );
+// $.getJSON("./static/json/rateforHtml.json", function(data){
+//     // alert('hihi')
+//     for (var i = 0; i < data.length; i++) {
+//         jsondata.push({
+//         x: data[i].Date,
+//         y: data[i].RateRange
+//     });
+//     }
+//     chart.render();
+//     // console.log(jsondata)
+//     // alert('hihihihi')
+// });
+// }
+</script>
+<!-- <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
+</div>
+<div>
+    <div>
+        <div class="chart" id="chartContainer" style="position: relative; height: 620px; width: 1100px;">
+        </div>
+    </div>
+<!--     <div>
+        <div id='target' class="tarea" style="position: fixed;bottom: 0;left: 0;height: 47% ;width: 50%;border: 3px solid #73AD21;overflow: scroll;"></div>
+    </div> -->
+<!--     <div>
+        <div id='sentence' class="tarea1" style="position: fixed;bottom: 0;left: 900px; height: 30%;width: 30%;border: 3px solid #73AD21;overflow: scroll;font-size: 120%;font-weight: bold;"></div>
+    </div> -->
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+</div>
+
+</html>

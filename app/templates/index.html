@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type= "text/css" href="static/CSS/latest.css">
+  <!--<link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='/CSS/latest.css')}}">-->
+  <title>Nanshan - FOMC</title>
+</head>
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="#hero"><h1>FOMC</h1></a>
+        </div>
+        <div class="nav-list">
+          <div class="hamburger"><div class="bar"></div></div>
+          <ul>
+            <li><a href="#projects" data-after="Chairman">Chairman</a></li>
+            <li><a href="#about" data-after="About">About</a></li>
+            <li><a href="#services" data-after="Services">News</a></li>
+			<li><a href="{{url_for('main.IRchart')}}" data-after="Home">Enter</a></li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Header -->
+
+  <!-- Hero Section  -->
+  <section id="hero">
+    <div class="hero container">
+      <div>
+        <h1>The Latest <span></span></h1>
+        <h1><small>Federal Open Market Committee</small> <span></span></h1>
+        <h1><b>Analysis <span></span></b></h1>
+        <a href="{{url_for('main.IRchart')}}" type="button" class="cta"><b>Statement</b></a>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero Section  -->
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <style>
+      .containering {
+        position: relative;
+        width: 50%;
+      }
+      .image {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: #202020;
+      }
+      .text {
+        color: white;
+        font-size: 20px;
+        position: absolute;
+        line-height: 1.5;
+        width: 90%;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        /* text-align: center; */
+      }
+      .center{
+        margin: auto;
+        width: 60%;
+        border: 5px solid #fff;
+        padding: 10px;
+      }
+      .containering:hover .overlay {
+        opacity: 0.7;
+      }
+
+
+    </style>
+    
+    <div class="projects container">
+      <div class="projects-header">
+        <h1 class="section-title"><span>The</span> Chairman</h1>
+          <h1 class="section-subtitle" style="font-size: 20px;">Maximum employment is the highest level of employment or lowest level of unemployment that the economy can sustain</h1>
+          <h1 class="section-subtitle2" style="font-size: 20px; color: red; ">while maintaining a stable inflation rate.</h1>
+      </div>
+      <div class="all-projects">
+        <div class="project-item">
+          <div class="project-info">
+            <a href="https://en.wikipedia.org/wiki/Jerome_Powell" target="_blank"><h1 style="color: white;">Jerome Powell</h1></a>
+            <h2>Feb 5, 2018 -</h2>
+            <img src="./static/PNG/TextGraph_JeromePowell.png" alt="img" class="image">
+            </br>
+
+          </div>
+          <div class="containering">
+            <img src="./static/JPEG/Chairman_JeromePowell.jpg" alt="img" class="image">
+            <div class="overlay">
+              <p class="text">Jerome Hayden "Jay" Powell (born February 4, 1953) is the 16th Chair of the Federal Reserve, serving in that office since February 2018. As Fed Chair, rather than having strong monetary views, Powell was seen as a consensus-builder and problem-solver, who kept close contact with Capitol Hill. Powell won bipartisan praise for the actions taken by the Fed in early 2020 to combat the financial effects of the coronavirus pandemic, but the resulting disconnect between asset prices and the economy was controversial, both for the financial risks of simultaneous large bubbles in several major asset classes, and the historic widening of wealth inequality.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-info">
+            <a href="https://en.wikipedia.org/wiki/Janet_Yellen" target="_blank"><h1 style="color: white;">Janet Yellen</h1></a>
+            <h2>Feb 3, 2014 - Feb3, 2018</h2>
+            <img src="./static/PNG/TextGraph_JanetYellen.png" alt="img" class="image">
+            </br>
+          </div>
+          <div class="containering">
+            <img src="./static/JPEG/Chairman_JanetYellen.jpeg" alt="img" class="image">
+            <div class="overlay">
+              <p class="text">Janet Louise Yellen (born August 13, 1946) is an American economist who was the 15th chair of the Federal Reserve from 2014 to 2018, the first woman to hold the role. As the recession deepened and millions more Americans lost jobs, Yellen was an assertive voice backing up Bernanke in the path-breaking move by the Fed to buy enormous quantities of Treasury and mortgage bonds to try to drive down long-term borrowing rates to support the economy.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-info">
+            <a href="https://en.wikipedia.org/wiki/Ben_Bernanke" target="_blank"><h1 style="color: white;">Ben Bernanke</h1></a>
+            <h2>Feb 1, 2006 - Jan 31, 2014</h2>
+            <img src="./static/PNG/TextGraph_BenBernake.png" alt="img" class="image">
+            </br>
+          </div>
+
+          <div class="containering">
+            <img src="./static/JPEG/Chairman_BenBernanke.jpg" alt="img" class="image">
+            <div class="overlay">
+              <p class="text">Ben Bernanke(born December 13, 1953) is an American economist at the Brookings Institution who served two terms as Chair of the Federal Reserve, the central bank of the United States, from 2006 to 2014. He was instrumental in stimulating the U.S. economy after the 2008 banking crisis that sent the economy into a downward spiral. He took an aggressive and experimental approach to restore confidence in the financial system.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-info">
+            <a href="https://en.wikipedia.org/wiki/Alan_Greenspan" target="_blank"><h1 style="color: white;">Alan Greenspan</h1></a>
+            <h2>Aug 1, 1987 - Jan 31, 2006</h2>
+            <img src="./static/PNG/TextGraph_AlanGreenspan.png" alt="img" class="image">
+            </br>
+          </div>
+          
+          <div class="containering">
+            <img src="./static/JPEG/Chariman_AlanGreenspan.jpg" alt="img" class="image">
+            <div class="overlay">
+              <p class="text">Alan Greenspan (born March 6, 1926) is an American economist who served as Chair of the Federal Reserve of the United States from 1987 to 2006. He was known as being adept at gaining consensus among Fed board members on policy issues and for serving during one of the most severe economic crises of the late 20th century, the aftermath of the stock market crash of 1987. After that crash, he advocated for sharply slashing interest rates to prevent the economy from sinking into a deep depression.</p>
+            </div>
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Projects Section -->
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="about container">
+      <div class="col-left">
+        <div class="about-img">
+          <img src="https://s3-ap-northeast-1.amazonaws.com/tarobo/articles/cover_imgs/000/001/085/cover/20190615_fnp503.jpg?1588818852" alt="img">
+        </div>
+      </div>
+      <div class="col-right">
+        <h1 class="section-title">About <span>Fed</span></h1>
+        <p><big>The Federal Reserve System is the central bank of the United States. It performs five general functions to promote the effective operation of the U.S. economy and, more generally, the public interest. The Federal Reserve conducts the nation’s monetary policy to promote maximum employment, stable prices, and moderate long-term interest rates in the U.S. economy;
+          promotes the stability of the financial system and seeks to minimize and contain systemic risks through active monitoring and engagement in the U.S. and abroad.</big></p>
+        <a href="https://www.federalreserve.gov/aboutthefed.htm" class="cta">More...</a>
+      </div>
+    </div>
+  </section>
+  <!-- End About Section -->
+
+  <!-- Service Section -->
+  <section id="services">
+    <div class="services container">
+      <div class="service-top">
+        <h1 class="section-title">Latest New<span>s</span></h1>
+      </div>
+    </br>
+    <iframe width="800" height="500" src="https://www.youtube-nocookie.com/embed/b6J2tkhu9VU?start=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <p>As of December 16, 2020</p>
+      <div class="service-bottom">
+        <div class="service-item">
+          <a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20201216a.htm" target="_blank"><h2><b>Press Release</b></h2></a>
+        </div>
+        <div class="service-item">
+          <a href="https://www.federalreserve.gov/monetarypolicy/fomcpresconf20201105.htm" target="_blank"><h2><b>The Previous</b></h2></a>
+        </div>
+        <div class="service-item">
+          <a href="https://www.federalreserve.gov/newsevents/calendar.htm" target="_blank"><h2><b>FOMC's Calender</b></h2></a>
+        </div>
+        <div class="service-item">
+          <a href="https://www.federalreserve.gov/datadownload/" target="_blank"><h2><b>Available Data</b></h2></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- End Service Section -->
+
+  
+
+  
+
+</body>
+</html>

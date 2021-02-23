@@ -1,0 +1,40 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Flasky{% endblock %}
+
+{%block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" 
+			 data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only"> Toggle navigation </span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a class="navbar-brand" href="/"><font color="#FFFFFF">	<b>FOMC</b></font></a>
+		</div>
+		{% if current_user.is_authenticated %}
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="/">Home</a></li>
+			</ul>
+			<ul class="nav navbar-nav">
+				<li><a href="{{url_for('authorization.manage')}}">Accounts</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="{{url_for('authorization.logout')}}"><font color="#FFFFFF">{{current_user.name}}</font>  Log Out</a></li>
+			</ul>
+		{% endif %}	
+		</div>
+	</div>
+</div>
+{%endblock%}
+
+{%block content%}
+<div class="container">
+	{%block page_content%}{%endblock%}
+</div>
+{%endblock%}

@@ -1,0 +1,133 @@
+{%extends "base.html"%}
+{%import "bootstrap/wtf.html" as wtf%}
+
+{%block title%}FOMC_Graph{%endblock%}
+{%block scripts %}
+{{super()}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="crossorigin="anonymous">
+</script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script>
+window.onload = function () {
+
+var jsondata = [];
+
+var chart = new CanvasJS.Chart("chartContainer",{
+    dataPointWidth: 15,
+    zoomEnabled: true,
+    axisY: {
+        includeZero: true,
+        interval: .5,
+        valueFormatString: "#0.## "
+    },
+    axisX: {
+        margin:0,
+        interval: 3,
+        intervalType: "year",
+        valueFormatString: "MMM-YY",
+        labelAngle: 0,
+        labelFontSize:20,
+        stripLines:[
+            {                
+                startValue:new Date(1995,02,01),
+                endValue:new Date(2006,01,31),
+                label: "Alan Greenspan",
+                labelPlacement:"outside",
+                labelFontColor:'#FF9933',
+                color:'#FF9933',
+                opacity:0.6                              
+            },
+            {                
+                startValue:new Date(2006,01,31),
+                endValue:new Date(2014,01,29),
+                label: "Janet Yellen",
+                labelFontColor:'#3352ff',
+                labelPlacement:"outside",
+                color:'#3352ff',
+                opacity:0.3                              
+            },
+            {                
+                startValue:new Date(2014,01,29),
+                endValue:new Date(2018,01,31),
+                label: "Ben Bernanke",
+                labelPlacement:"outside",
+                labelFontColor:'#179c17',
+                color:'#179c17',
+                opacity:0.3                               
+            },
+            {                
+                startValue:new Date(2018,01,31),
+                endValue:new Date(2020,09,16),
+                label: "Jerome Powell",
+                labelPlacement:"outside",
+                labelFontColor:'#FF0000',
+                color:'#FF0000',
+                opacity:0.3                               
+            },
+            
+            ]  
+
+    },
+    toolTip: {
+        content: "{x} </br> min: {y[0]}, max: {y[1]}"
+    },
+    data: [
+    {
+        type: "rangeColumn",
+        click: onClick,
+        yValueFormatString: "#0.##",
+        legendText: "Min&Max Federal Funds Rate",
+        dataPoints: jsondata
+    }
+    ]
+});
+
+function onClick(e) {
+	var yyyy = e.dataPoint.x.getFullYear();
+	var mm = e.dataPoint.x.getMonth() + 1;
+	var dd = e.dataPoint.x.getDate();
+	var ans = [yyyy,(mm>9 ? '' : '0') + mm,(dd>9 ? '' : '0') + dd].join('');
+	var forfilename = `./static/TXT/${ans}.txt`;
+	var forsentencename = `./static/TXT/${ans}_keysentence.txt`;
+	
+	$(document).ready(function(){
+		$("#target").load(forfilename);
+	})
+	$(document).ready(function(){
+		$("#sentence").load(forsentencename);
+	})
+	
+}
+
+$.getJSON("./static/JSON/rateforHtml1.json",' ',function(data){
+	for (var i = 0; i < data.length; i++) {
+		jsondata.push({
+			x: new Date(data[i].Date),
+			y: data[i].RateRange
+		});
+	}
+
+	chart.render();
+})
+
+};
+
+
+</script>
+{%endblock %}
+
+{%block page_content%}
+<div>
+	<div class="chart" id="chartContainer" style="position: relative; height: 100%; width: 100%;">
+	</div>
+</div>
+<div>
+	<div id='targetTitle' class="tarea" style="position: fixed; bottom: 150px; left: 400px; height: 40% ;width: 30%; solid #000000;overflow: scroll;font-size: 200%; font-weight: bold; line-height: 1.5;">The Statement</div>
+	<div id='target' class="tarea" style="position: fixed; bottom: 15px; left: 50px; height: 45% ;width: 60%;border: 1px solid #000000;overflow: scroll;font-size: 100%; line-height: 1.5;"></div>
+</div>
+<div>
+	<div id='sentenceTitle' class="tarea" style="position: fixed; bottom: 150px; left: 1400px; height: 32%;width: 15%; solid #000000;overflow: scroll;font-size: 200%;font-weight: bold; line-height: 1.5;">Rate Summary</div>
+	<div id='sentence' class="tarea" style="position: fixed; bottom: 100px; left: 1200px; height: 30%;width: 32%;border: 1px solid #000000;overflow: scroll;font-size: 120%;font-weight: bold; line-height: 1.5;"></div>
+</div>
+
+{%endblock%}

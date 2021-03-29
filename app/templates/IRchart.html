@@ -87,8 +87,8 @@ function onClick(e) {
 	var mm = e.dataPoint.x.getMonth() + 1;
 	var dd = e.dataPoint.x.getDate();
 	var ans = [yyyy,(mm>9 ? '' : '0') + mm,(dd>9 ? '' : '0') + dd].join('');
-	var forfilename = `./static/TXT/${ans}.txt`;
-	var forsentencename = `./static/TXT/${ans}_keysentence.txt`;
+	var forfilename = `./static/TXT/Front_IRchart/${ans}.txt`;
+	var forsentencename = `./static/TXT/Front_IRchart/${ans}_keysentence.txt`;
 	
 	$(document).ready(function(){
 		$("#target").load(forfilename);

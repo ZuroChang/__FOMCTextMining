@@ -15,4 +15,6 @@ class FolderPath:
         self.CSS=self.static+"CSS/"
         self.JSON=self.static+"JSON/"
         self.PDF=self.static+"PDF/"
+        
+        self.Parsed=self.JSON+"Parsed/"
     
